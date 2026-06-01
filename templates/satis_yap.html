@@ -1,0 +1,36 @@
+{% extends 'ana_sablon.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">
+                <i class="bi bi-cart-plus"></i> <strong>Satış Yap</strong>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Ürün Seçin</label>
+                        <select name="urun_id" class="form-select" required>
+                            <option value="">Seçiniz...</option>
+                            {% for u in urunler %}
+                            <option value="{{ u.UrunID }}">
+                                {{ u.UrunAdi }} — {{ u.Fiyat }} ₺ (Stok: {{ u.StokMiktari }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Adet</label>
+                        <input type="number" name="miktar" class="form-control" min="1" value="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100 fw-bold">
+                        <i class="bi bi-check-circle"></i> Satışı Tamamla
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

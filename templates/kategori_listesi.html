@@ -1,0 +1,60 @@
+{% extends 'ana_sablon.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white">
+                <i class="bi bi-plus-circle"></i> Yeni Kategori
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <input type="text" name="kategori_adi" class="form-control" placeholder="Kategori adı..." required>
+                    </div>
+                    <button type="submit" class="btn btn-dark w-100">Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <i class="bi bi-tags"></i> Kategoriler
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Kategori Adı</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for k in kategoriler %}
+                        <tr>
+                            <td>{{ k.KategoriID }}</td>
+                            <td>{{ k.KategoriAdi }}</td>
+                            <td>
+                                <a href="/kategori/duzenle/{{ k.KategoriID }}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="/kategori/sil/{{ k.KategoriID }}" class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Kategoriyi silmek istediğinizden emin misiniz?')">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr><td colspan="3" class="text-center text-muted py-4">Henüz kategori eklenmemiş.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
